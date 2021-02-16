@@ -90,6 +90,14 @@ INSTALLED_APPS = [
 
     # Applications
     'accounts',
+
+    # My Apps
+    'topic.apps.TopicConfig',
+    'post.apps.PostConfig',
+    'comment.apps.CommentConfig',
+
+    "rest_framework_nested"
+
 ]
 
 SITE_ID = 1
@@ -175,9 +183,10 @@ if DEBUG or ENVIRONMENT == 'test':
 ###
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',

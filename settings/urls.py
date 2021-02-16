@@ -6,6 +6,8 @@ backend-challenge-001 URL Configuration
 ###
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.urls import path
+from rest_framework import routers
 
 from helpers.health_check_view import health_check
 
@@ -21,4 +23,9 @@ urlpatterns = [
 
     # Applications
     url(r'^', include('accounts.urls')),
+
+    path('topics/', include('topic.urls')),
+
+    path('api-auth/', include('rest_framework.urls')),
 ]
+
