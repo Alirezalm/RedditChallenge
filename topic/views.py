@@ -10,7 +10,7 @@ from topic.serializers import TopicSerializer
 
 class TopicListView(APIView):
     """
-    List all snippets, or create a new snippet.
+    List all topics, or create a new snippet.
     """
 
     def get(self, request):
