@@ -11,10 +11,11 @@ class Topic(models.Model):
     """
         This class implements an ORM for the posts
     """
+    name = models.CharField('Name', max_length=MAX_LENGTH)
+
     title = models.CharField('Topic title', max_length=MAX_LENGTH)
 
-    name = models.SlugField("Topic name", max_length=MAX_LENGTH, unique=True)
-
+    url_name = models.SlugField("URLNAME", max_length = MAX_LENGTH)
 
     author = models.ForeignKey(User, verbose_name='Topic user', on_delete=models.CASCADE)
 
