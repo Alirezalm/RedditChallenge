@@ -1,5 +1,6 @@
 from django.http import Http404
 from rest_framework import status
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -12,6 +13,14 @@ class TopicListView(APIView):
     """
     List all topics, or create a new snippet.
     """
+    def get_permissions(self):
+
+        if self.request.method == 'GET':
+            self.permission_classes = [AllowAny]
+        else:
+            self.permission_classes = [IsAuthenticated,]
+
+        return super().get_permissions()
 
     def get(self, request):
         topics = Topic.objects.all()

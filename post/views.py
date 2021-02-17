@@ -1,5 +1,6 @@
 from django.http import Http404
 from rest_framework import status, viewsets
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -11,7 +12,14 @@ from topic.serializers import TopicSerializer
 
 
 class PostListView(APIView):
+    def get_permissions(self):
 
+        if self.request.method == 'GET':
+            self.permission_classes = [AllowAny]
+        else:
+            self.permission_classes = [IsAuthenticated,]
+
+        return super().get_permissions()
     def get(self, request, url_name):
 
         topic = Topic.objects.get(url_name = url_name)
