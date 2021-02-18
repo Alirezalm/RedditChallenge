@@ -1,5 +1,5 @@
 from django.http import Http404
-from rest_framework import status
+from rest_framework import status, viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -9,30 +9,10 @@ from topic.my_permissions import IsAuthorOrReadOnly
 from topic.serializers import TopicSerializer
 
 
-class TopicListView(APIView):
-    """
-    List all topics, or create a new snippet.
-    """
-    def get_permissions(self):
-
-        if self.request.method == 'GET':
-            self.permission_classes = [AllowAny]
-        else:
-            self.permission_classes = [IsAuthenticated,]
-
-        return super().get_permissions()
-
-    def get(self, request):
-        topics = Topic.objects.all()
-        serializer = TopicSerializer(topics, many=True)
-        return Response(serializer.data)
-
-    def post(self, request):
-        serializer = TopicSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class TopicViewSet(viewsets.ModelViewSet):
+    queryset = Topic.objects.all()
+    serializer_class = TopicSerializer
+    permission_classes = [IsAuthenticated,]
 
 
 class TopicDetailView(APIView):
