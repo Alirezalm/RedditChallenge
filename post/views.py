@@ -15,10 +15,16 @@ class PostViewSet(viewsets.ModelViewSet):
 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [IsAuthorOrReadOnly]
+    # permission_classes = [IsAuthorOrReadOnly]
 
     def filter_queryset(self, queryset):
         topic_url_name = self.kwargs.get('topic_url_name')
         return queryset.filter(topic__url_name=topic_url_name)
 
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [AllowAny]
+        else:
+            self.permission_classes = [IsAuthorOrReadOnly,]
+        return super(PostViewSet, self).get_permissions()
 
