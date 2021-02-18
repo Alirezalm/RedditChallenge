@@ -12,7 +12,16 @@ from topic.serializers import TopicSerializer
 class TopicViewSet(viewsets.ModelViewSet):
     queryset = Topic.objects.all()
     serializer_class = TopicSerializer
-    permission_classes = [IsAuthenticated,]
+    lookup_field = 'url_name'
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            self.permission_classes = [AllowAny]
+        else:
+            self.permission_classes = [IsAuthenticated,]
+        return super(TopicViewSet, self).get_permissions()
+            
+
+
 
 
 class TopicDetailView(APIView):
