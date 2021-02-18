@@ -1,9 +1,9 @@
 from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework_nested import routers
-
-from comment.models import Comment
 from comment.views import CommentViewSet
+from comment.models import Comment
+
 from post.views import PostViewSet
 
 from topic import views
