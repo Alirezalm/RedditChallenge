@@ -1,6 +1,5 @@
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
-
 from post.models import Post
 from post.api.v1.serializers import PostSerializer
 from topic.my_permissions import IsAuthorOrReadOnly
@@ -10,7 +9,6 @@ class PostViewSet(viewsets.ModelViewSet):
 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    # permission_classes = [IsAuthorOrReadOnly]
 
     def filter_queryset(self, queryset):
         topic_url_name = self.kwargs.get('topic_url_name')
