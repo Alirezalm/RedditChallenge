@@ -1,7 +1,7 @@
-from rest_framework import status, viewsets
+from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from topic.models import Topic
-from topic.serializers import TopicSerializer
+from topic.api.v1.serializers import TopicSerializer
 
 
 class TopicViewSet(viewsets.ModelViewSet):

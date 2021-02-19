@@ -1,14 +1,9 @@
-from django.http import Http404
-from rest_framework import status, viewsets
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import viewsets
+from rest_framework.permissions import AllowAny
 
 from post.models import Post
-from post.serializers import PostSerializer
-from topic.models import Topic
+from post.api.v1.serializers import PostSerializer
 from topic.my_permissions import IsAuthorOrReadOnly
-from topic.serializers import TopicSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):

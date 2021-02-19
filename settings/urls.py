@@ -24,7 +24,9 @@ urlpatterns = [
     # Applications
     url(r'^', include('accounts.urls')),
 
-    path('api/', include('topic.urls')),
+    path('', include('topic.urls')),
+    path('', include('post.urls')),
+    path('', include('comment.urls')),
 
     path('api-auth/', include('rest_framework.urls')),
 ]
