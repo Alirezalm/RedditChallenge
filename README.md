@@ -1,5 +1,6 @@
 # Restful API project by using Django Rest Framework (DRF)
-# This backend project is designed dnd distributed by [JungleDevs](https://www.jungledevs.com).
+
+## This backend project is designed dnd distributed by [JungleDevs](https://www.jungledevs.com).
 
 ## Description
 **Project goal**: The idea of the project is to implement a very simplified version of [Reddit](https://www.reddit.com) REST API. 
